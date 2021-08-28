@@ -1,0 +1,75 @@
+/* html {
+  font-size: 100px;
+} */
+
+@font-face {
+  font-family: "customTitle";
+  src: url("/fonts/Pokemon Solid.ttf");
+}
+
+.title {
+  &_font {
+    font-family: "customTitle";
+  }
+  &_bg {
+    background-color: #ef5350;
+  }
+  &_color {
+    color: #feca1b;
+  }
+}
+
+.hero {
+  &_container {
+    background-color: #ef5350;
+    min-height: 50vh;
+
+    padding-bottom: -30px;
+  }
+  &_title {
+    font-size: 32px;
+  }
+}
+
+.u {
+  &_center {
+    &_x {
+      position: absolute;
+      left: 50%;
+      transform: translate(-50%, 0);
+    }
+    &_y {
+      position: absolute;
+      top: 50%;
+      transform: translate(0, -50%);
+    }
+    &_xy {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+    }
+  }
+  &_rounded_2X {
+    border-radius: 0.5rem;
+  }
+}
+
+.gradient {
+  background-image: linear-gradient(to bottom, #ef5350, #ce6468, #00d4ff);
+}
+
+.white_glass {
+  background: rgba(249, 250, 247, 0.8);
+  backdrop-filter: blur(10px);
+}
+
+.feature {
+  &_card {
+    width: 75%;
+  }
+  &_icon {
+    width: 25%;
+    margin: 24px 0;
+  }
+}
