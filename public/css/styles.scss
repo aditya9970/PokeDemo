@@ -2,6 +2,12 @@
   font-size: 100px;
 } */
 
+$sm: 576px;
+$md: 768px;
+$lg: 992px;
+$xl: 1200px;
+$xxl: 1400px;
+
 @font-face {
   font-family: "customTitle";
   src: url("/fonts/Pokemon Solid.ttf");
@@ -27,7 +33,7 @@
     padding-bottom: -30px;
   }
   &_title {
-    font-size: 32px;
+    font-size: 50px;
   }
 }
 
@@ -66,10 +72,62 @@
 
 .feature {
   &_card {
-    width: 75%;
+    margin: 10px 0;
+    padding: 10px;
+    aspect-ratio: 4/3;
+    background-color: white;
+    justify-content: space-between;
+
+    display: flex;
+    flex: 20 1 100px;
+    flex-direction: column;
+
+    &:hover {
+      transform: scale(1.02);
+      transition: all 0.7s;
+      box-shadow: 5px 5px 10px rgba($color: #000000, $alpha: 0.4);
+    }
+    &_text {
+      margin-bottom: 10px;
+      font-size: 20px;
+    }
   }
   &_icon {
-    width: 25%;
-    margin: 24px 0;
+    &_container {
+      flex: 20 1 100px;
+    }
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 5rem;
+    min-width: 30%;
+    max-width: 60%;
+    margin: 12px 0;
+    margin-top: 0;
+    &_1 {
+      transform: translateX(-25%);
+    }
+  }
+}
+
+.pokemon {
+  &_card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    // aspect-ratio: 9/12;
+    margin: 1rem 0;
+    padding: 1rem;
+    &_img {
+      margin: 10px;
+    }
+    &_name {
+      font-size: 120%;
+      margin: 0 1rem;
+      padding: 0;
+      text-align: center;
+    }
   }
 }

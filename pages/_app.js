@@ -1,12 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import Head from "next/head";
 
 import { Header } from "../components/Layout";
 import "../public/css/styles.scss";
+import "../public/css/animation.scss";
+import { LoadingContext } from "../context/notifcation";
+import { HeaderContext } from "../context/header";
 
-const APP = ({ Component, PageProps }) => {
+const App = ({ Component, pageProps }) => {
   //   const [header, setHeader] = {};
+  const [status, setStatus] = useState({ isLoading: false, message: "" });
 
+  const [extendedHeader, setExtendedHeader] = useState({
+    isActive: true,
+    title: "PokeDemo",
+  });
   return (
     <div style={{ minHeight: "200vh" }}>
       <Head>
@@ -26,11 +34,22 @@ const APP = ({ Component, PageProps }) => {
           crossorigin="anonymous"
         ></script>
       </Head>
-      <Header></Header>
-
-      <Component {...PageProps} />
+      <LoadingContext.Provider value={{ status: status, setStatus, setStatus }}>
+        <HeaderContext.Provider
+          value={{
+            extendedHeader: extendedHeader,
+            setExtendedHeader: setExtendedHeader,
+          }}
+        >
+          <Header
+            extendedHeader={extendedHeader}
+            setExtendedHeader={setExtendedHeader}
+          ></Header>
+          <Component {...pageProps} />
+        </HeaderContext.Provider>
+      </LoadingContext.Provider>
     </div>
   );
 };
 
-export default APP;
+export default App;
