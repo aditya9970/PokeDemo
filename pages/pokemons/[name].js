@@ -3,9 +3,7 @@ import Router, { withRouter } from "next/router";
 import { get } from "../../actions/pokemon";
 import { HeaderContext } from "../../context/header";
 import { capitalize } from "../../helpers/capitalize";
-import { Accordion } from "react-bootstrap";
-import { Collapse } from "bootstrap";
-import { UncontrolledCollapse } from "reactstrap";
+import { Collapse } from "reactstrap";
 
 const Pokemon = ({ pokemon, query }) => {
   //   const [pokemon, setPokemon] = useState({});
@@ -15,6 +13,11 @@ const Pokemon = ({ pokemon, query }) => {
   useEffect(() => {
     setExtendedHeader({ isActive: false, title: " " });
   }, []);
+  const [sections, setSections] = useState({
+    one: true,
+    two: false,
+    three: false,
+  });
   return (
     <div className="title_bg my-5 ">
       <div style={{ height: "100px" }}></div>
@@ -57,10 +60,15 @@ const Pokemon = ({ pokemon, query }) => {
             <div className="border">
               <div>
                 <div>
-                  <div id="toggler1" className="p-2 border-bottom border-top">
+                  <div
+                    onClick={() =>
+                      setSections({ ...sections, one: !sections.one })
+                    }
+                    className="p-2 border-bottom border-top"
+                  >
                     General Info
                   </div>
-                  <UncontrolledCollapse toggler="#toggler1">
+                  <Collapse isOpen={sections.one}>
                     <div className="p-2">
                       <div className="row">
                         <div className="col-6">
@@ -83,13 +91,18 @@ const Pokemon = ({ pokemon, query }) => {
                         </div>
                       </div>
                     </div>
-                  </UncontrolledCollapse>
+                  </Collapse>
                 </div>
                 <div>
-                  <div id="toggler2" className="p-2 border-bottom border-top">
+                  <div
+                    className="p-2 border-bottom border-top"
+                    onClick={() =>
+                      setSections({ ...sections, two: !sections.two })
+                    }
+                  >
                     Stats
                   </div>
-                  <UncontrolledCollapse toggler="#toggler2">
+                  <Collapse isOpen={sections.two}>
                     <div className="p-2">
                       <div className="row">
                         {pokemon.stats.map((stat) => {
@@ -116,13 +129,18 @@ const Pokemon = ({ pokemon, query }) => {
                         })}
                       </div>
                     </div>
-                  </UncontrolledCollapse>
+                  </Collapse>
                 </div>
                 <div>
-                  <div id="toggler3" className="p-2 border-bottom border-top">
+                  <div
+                    className="p-2 border-bottom border-top"
+                    onClick={() =>
+                      setSections({ ...sections, three: !sections.three })
+                    }
+                  >
                     Moves
                   </div>
-                  <UncontrolledCollapse toggler="#toggler3">
+                  <Collapse isOpen={sections.three}>
                     <div className="p-2">
                       {" "}
                       {pokemon.moves.map((move) => (
@@ -134,7 +152,7 @@ const Pokemon = ({ pokemon, query }) => {
                         </div>
                       ))}
                     </div>
-                  </UncontrolledCollapse>
+                  </Collapse>
                 </div>
               </div>
             </div>
